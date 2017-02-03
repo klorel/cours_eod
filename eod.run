@@ -1,0 +1,35 @@
+reset;
+
+### horizon de travail
+set TS;
+param MIN_TS := 0;
+param MAX_TS := 8759;
+set ALL_TS := MIN_TS .. MAX_TS;
+
+### description de la demande
+param CONSO{TS};
+
+### description des moyens de production
+# nucleaire : 30-120
+# thermique a flamme, charbon : 50-100
+# CCGT, gaz : 60-80
+# TAC, fioul : 150-300
+set PRODUCTEUR;
+
+param COUT{PRODUCTEUR};
+param PMIN{PRODUCTEUR};
+param PMAX{PRODUCTEUR};
+param CO2{PRODUCTEUR};
+
+param PRIX_CO2 := 0;
+data;
+param: TS: CONSO := include conso.txt;
+
+param: PRODUCTEUR: 	COUT 	PMIN 	PMAX	CO2:= 
+	"NUCLEAIRE"  	60		0		63e3	0
+	"CHARBON"	 	70		0		 3e3	0.9
+	"GAZ"		 	80		0		 7e3	0.4
+	"FIOUL"			150		0		 5e3	0.8
+;
+
+model;
