@@ -1,5 +1,6 @@
 reset;
-
+option solver cplexamp;
+option cplex_options 'outlev=1';
 ### horizon de travail
 set TS;
 param MIN_TS := 0;
@@ -33,3 +34,6 @@ param: PRODUCTEUR: 	COUT 	PMIN 	PMAX	CO2:=
 ;
 
 model;
+
+
+solve;
